@@ -48,7 +48,10 @@ namespace Juegos
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Juegos v1"));
             }
 
-            app.UseHttpsRedirection();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -58,6 +61,7 @@ namespace Juegos
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
