@@ -14,8 +14,8 @@
     <h1>Equipos</h1>
 
     <!-- Optional JavaScript; choose one of the two! -->
-    <a class="btn btn-primary" href="#" role="button">Nuevo</a>
-    <table class="table">
+    <a class="btn btn-primary" onclick="agregar()" role="button">Nuevo</a>
+    <table class="table" id="equiposTable">
         <thead>
             <tr>
                 <td></td>
@@ -24,10 +24,48 @@
                 <th>Fundación</th>
             </tr>
         </thead>
+        <tbody></tbody>
     </table>
+    <div id="modalEquipo" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Agregar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="frmEquipo" > 
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="Equipo">Equipo</label>
+              <input type="text" class="form-control" name="Equipo" id="Equipo" required >
+            </div>
+            <div class="form-group">
+              <label for="Fundacion">Fundación</label>
+              <input type="date" class="form-control" name="Fundacion" id="Fundacion" required >
+            </div>
+            <div class="form-group">
+              <label for="Logotipo">Logotipo</label>
+              <input type="url" class="form-control" name="Logotipo" id="Logotipo">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="EquipoId" id="EquipoId">
+            <input type="hidden" id="Estatus">
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cerrarModal()">Cerrar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/equipos.js?1.0.4"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>

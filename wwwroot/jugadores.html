@@ -14,21 +14,78 @@
     <h1>Jugadores</h1>
 
     <!-- Optional JavaScript; choose one of the two! -->
-    <a class="btn btn-primary" href="#" role="button">Nuevo</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <td></td>
-                <th>Id</th>
-                <th>Equipo</th>
-                <th>Fundación</th>
+
+    <hr>
+    <div id="app">
+      <a class="btn btn-primary" href="#" v-on:click="nuevo" role="button">Nuevo</a>
+      <hr>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Id</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Equipo</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr v-for="j in jugadores">
+              <td></td>
+              <td>{{ j.jugadorId }}</td>
+              <td><a href="#" v-on:click="editar(j)">{{ j.nombre }}</a></td>
+              <td>{{ j.descripcion }}</td>
+              <td>{{ buscaEquipo(j.equipoId) }}</td>
             </tr>
-        </thead>
-    </table>
-    
+          </tbody>
+      </table>
+      <div id="modalJugador" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitle">{{modaltitulo}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="cerrarModal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form v-on:submit.prevent="guardarJugador"> 
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="Jugador">Nombre</label>
+                <input type="text" class="form-control" name="Jugador" id="Jugador" v-model="model.nombre" required >
+              </div>
+              <div class="form-group">
+                <label for="Nacimiento">Fecha de nacimiento</label>
+                <input type="date" class="form-control" name="Nacimiento" id="Nacimiento" v-model="model.nacimiento" required >
+              </div>
+              <div class="form-group">
+                <label for="Descripcion">Descripción</label>
+                <input type="text" class="form-control" name="Descripcion" id="Descripcion" v-model="model.descripcion" v-on:keypress="cambiarTexto">
+              </div>
+              <div class="form-group">
+                <label for="Equipo">Equipo</label>
+                <select class="form-control" v-model="model.equipoId" required>
+                  <option v-for="e in equipos" v-bind:value="e.equipoId">{{ e.descripcion }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="cerrarModal">Cerrar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+  </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="js/jugadores.js?1.0.3"></script>
+    
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
