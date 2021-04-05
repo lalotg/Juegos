@@ -82,7 +82,7 @@ namespace Juegos.Controllers
                 idParameter.Direction = System.Data.ParameterDirection.Output;
                 cmd.Parameters.Add(idParameter);
         
-                cmd.ExecuteNonQuery();
+                await cmd.ExecuteNonQueryAsync();
                 partido.PartidoId = int.Parse(idParameter.Value.ToString());
             }
 
