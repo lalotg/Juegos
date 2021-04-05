@@ -12,6 +12,7 @@ namespace Juegos.Models
         public DbSet<Equipo> Equipos {get; set;}
         public DbSet<Jugador> Jugadores { get; set; }
         
+        public DbSet<Partido> Partidos {get;set;}
         
     }
 }
